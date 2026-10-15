@@ -1013,7 +1013,7 @@
       </div>
 
       <!-- Hero CTA -->
-      <a href="#pricing" class="btn btn-primary btn-pulse btn-responsive">
+      <a href="#pricing" onclick="event.preventDefault(); document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});" class="btn btn-primary btn-pulse btn-responsive">
         QUERO ACESSO COM DESCONTO AGORA 👉
       </a>
 
@@ -1388,34 +1388,7 @@
     </a>
   </div>
 
-  <!-- Downsell / Exit Intent Modal Overlay -->
-  <div id="downsell-modal" class="modal-overlay">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-
-      <span style="font-size: 2.5rem; display: block; margin-bottom: 8px;">💙</span>
-      <h3 style="font-size: 1.6rem; color: #0f172a; margin-bottom: 8px;">ESPERA! NÃO VÁ EMBORA AINDA!</h3>
-      <p style="color: #64748b; font-size: 0.95rem;">
-        Sabemos o quanto o desenvolvimento do seu pequeno é importante. Por isso, liberamos um <strong>CUPOM DE DESCONTO EXCLUSIVO DE R$ 10,00</strong> para você garantir o material hoje!
-      </p>
-
-      <div class="downsell-price-box">
-        <div style="text-decoration: line-through; color: #94a3b8; font-size: 0.9rem;">De R$ 37,00 por apenas</div>
-        <div style="font-size: 2.4rem; font-weight: 900; color: #15803d; line-height: 1.1; margin: 4px 0;">
-          R$ 27<span style="font-size: 1.2rem;">,00</span>
-        </div>
-        <div style="font-size: 0.85rem; color: #166534; font-weight: 700;">Pagamento Único · Acesso Vitalício em PDF</div>
-      </div>
-
-      <a href="https://pay.wiapy.com/checkout/69b9547c171caffc9960aff6f" class="btn btn-primary btn-pulse" style="width: 100%; padding: 16px 20px; font-size: 1.1rem; background: #22c55e;">
-        SIM! QUERO O KIT POR R$ 27,00 👉
-      </a>
-
-      <div>
-        <span class="refusal-link" onclick="closeModal()">Não, obrigada. Prefiro recusar o desconto e as atividades.</span>
-      </div>
-    </div>
-  </div>
+  <!-- Downsell Modal removed as requested -->
 
 
   <!-- Recent Buyer Toast Notification (Top Right) -->
@@ -1589,34 +1562,7 @@
         tryUpdate(0);
     });
 
-    /* --- BACK REDIRECT & EXIT INTENT DOWNSELL LOGIC --- */
-    let hasShownModal = false;
-
-    function openModal() {
-      if (!hasShownModal) {
-        hasShownModal = true;
-        document.getElementById('downsell-modal').classList.add('active');
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('downsell-modal').classList.remove('active');
-    }
-
-    // 1. Back Redirect Interception
-    (function initBackRedirect() {
-      try {
-        history.pushState({ page: 1 }, "", location.href);
-        window.onpopstate = function (e) {
-          openModal();
-          history.pushState({ page: 1 }, "", location.href);
-        };
-      } catch (e) {
-        console.warn("Back redirect init failed:", e);
-      }
-    })();
-
-    // Exit Intent Mouse Leave removed as requested
+    // Back redirect & exit intent popups removed as requested
 
     // FAQ Accordion Toggle Helper
     function toggleFaq(element) {
